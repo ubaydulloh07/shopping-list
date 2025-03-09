@@ -15,7 +15,7 @@ import React from "react";
 import { Card, Avatar, Button, Tooltip } from "antd";
 import { CopyOutlined, DeleteOutlined } from "@ant-design/icons";
 import "antd/dist/reset.css";
-import "./Profile.css";
+import "./profile.css";
 
 const Profile = () => {
   const username = "ubaydulloh_07";
