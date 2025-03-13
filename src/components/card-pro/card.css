@@ -1,0 +1,68 @@
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+  width: 1250px;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.profile-header h2 {
+  font-size: 34px;
+  font-weight: 600;
+  color: #333;
+}
+
+.profile-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 25px;
+}
+
+.profile-name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-name h2 {
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.profile-name h2 .status {
+  position: absolute;
+  top: -5px;
+  left: 134px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: darkgreen;
+  padding: 6px 8px;
+  border-radius: 10px;
+  width: 80px;
+  text-align: center;
+  color: white;
+}
+
+.profile-name p {
+  font-size: 14px;
+  color: #333;
+}

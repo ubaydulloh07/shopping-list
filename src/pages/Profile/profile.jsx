@@ -1,56 +1,99 @@
 
-// import  useAuth  from "../../hooks/useAuth";
-
-// function Profile() {
-//     const {logout} = useAuth();
-//     return (
-        
-//     )
-// }   
-
-// export default Profile
 
 
-import React from "react";
-import { Card, Avatar, Button, Tooltip } from "antd";
-import { CopyOutlined, DeleteOutlined } from "@ant-design/icons";
+// import React from "react";
+// import "antd/dist/reset.css";
+// import "./profile.css";
+// import Header from "../../components/header/header";
+// import { IoPerson } from "react-icons/io5";
+// import GroupMenu from "../Group/group";
+// import { Link } from "react-router-dom";
+
+// const Profile = () => {
+
+//   return (
+//     <div className="profile-container">
+
+    
+//     <div className="header">
+//       <Header />
+//     </div>
+
+//     <div className="content">
+//       <aside>
+//       <div className="profile-menu">
+//         <Link to="/profile"><IoPerson className="profile-icon" />Profile</Link>
+//       </div>
+//     <div>
+//       <GroupMenu />
+//     </div>
+//       </aside>
+     
+//     </div>
+
+
+
+
+
+//     </div>
+//   );
+// };
+
+// export default Profile;
+
+
+
+
+
+import { useEffect, useState } from "react";
 import "antd/dist/reset.css";
 import "./profile.css";
+import Header from "../../components/header/header";
+import { IoPerson } from "react-icons/io5";
+import Group from "../Group/group";
+import { Link, useNavigate } from "react-router-dom";
+import ProfileCard from "../../components/card-pro/card";
 
 const Profile = () => {
-  const username = "ubaydulloh_07";
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-  const copyUsername = () => {
-    navigator.clipboard.writeText(username);
-  };
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (!storedUser) {
+      navigate("/login");
+    } else {
+      setUser(storedUser);
+    }
+  }, [navigate]);
 
   return (
     <div className="profile-container">
-      <Card className="profile-card">
-        <div className="profile-header">
-          <Avatar size={100} className="profile-avatar">
-            U
-          </Avatar>
-          <div className="profile-info">
-            <h2>Your Profile</h2>
-            <h3>Ubaydulloh</h3>
-            <p className="username">{username}</p>
-            <span className="status">Active</span>
+      <div className="header">
+        <Header />
+      </div>
+
+      <div className="content">
+        <aside>
+          <div className="profile-menu">
+            <Link to="/profile">
+              <IoPerson className="profile-icon" />
+              Profile
+            </Link>
           </div>
+          <div>
+            <Group />
+          </div>
+        </aside>
+        <div className="profile-content">
+          {user ? (
+            <ProfileCard name={user.name} username={user.username} />
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
-        <div className="profile-actions">
-          <Tooltip title="Copy Username">
-            <Button type="primary" icon={<CopyOutlined />} onClick={copyUsername}>
-              Copy Username
-            </Button>
-          </Tooltip>
-          <Tooltip title="Delete Account">
-            <Button type="primary" danger icon={<DeleteOutlined />}>
-              Delete Account
-            </Button>
-          </Tooltip>
-        </div>
-      </Card>
+
+      </div>
     </div>
   );
 };
