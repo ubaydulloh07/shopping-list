@@ -119,7 +119,6 @@ function Header() {
         </div>
       </div>
 
-      {/* Join Group Modal */}
       {isModalOpen && (
         <div className="modal-overlay-2" onClick={closeModal}>
           <div className="modal-2" onClick={(e) => e.stopPropagation()}>
@@ -130,6 +129,7 @@ function Header() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoFocus
+              style={{color: "black"}}
             />
             {joinError && <p className="error">{joinError}</p>}
             <div className="modal-buttons-2">
