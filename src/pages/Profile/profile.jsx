@@ -76,12 +76,12 @@ const Profile = () => {
       <div className="content">
         <aside>
           <div className="profile-menu">
-            <Link to="/profile">
+            <Link to="/">
               <IoPerson className="profile-icon" />
               Profile
             </Link>
           </div>
-          <div>
+          <div style={{position: "relative", zIndex: 1}}>
             <Group />
           </div>
         </aside>

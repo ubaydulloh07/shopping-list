@@ -1,133 +1,242 @@
-.group-container {
-  position: relative;
-  display: inline-block;
-}
-
-.group-btn {
+.groups-page {
   padding: 10px;
-  width: 235px;
-  font-size: 16px;
-  border: none;
-  background: #f8f9fa;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.2s;
   display: flex;
-  align-items: start;
-  justify-content: start;
-  gap: 10px;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.group-btn:hover {
-  background: #e0e0e0;
+.groups-page h1 {
+  font-size: 24px;
+  color: var(--text-primary);
 }
 
-.dropdown {
-  position: absolute;
-  top: 100%;
-  margin-top: 15px;
+.groups-list {
   width: 200px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  pointer-events: none;
+  height: 100%;
+  padding: 20px 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
 }
 
-.dropdown.show {
-  opacity: 1;
-  transform: scaleY(1);
-  pointer-events: auto;
+.groups-list h2 {
+  font-size: 16px;
+  color: var(--text-secondary);
+  padding: 0 20px;
+  margin-bottom: 16px;
 }
 
-.dropdown-item {
+.group-card {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 10px;
+  background: transparent;
+  margin-bottom: 15px;
   width: 100%;
-  padding: 10px;
-  text-align: left;
+  border: 1px solid var(--border-color);
+}
+
+.group-card:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.group-card h3 {
+  font-size: 14px;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.group-meta {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 12px;
+}
+
+.create-group-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  color: var(--accent-color);
   background: none;
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
 }
 
-.dropdown-item:hover {
-  background: #f5f5f5;
+.create-group-btn:hover {
+  background: var(--bg-tertiary);
 }
 
-/* Modal overlay - qoraygan fon */
-
-.modal-overlay {
+.modal-overlay-2 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  bottom: 0;
+  background: var(--modal-overlay);
   display: flex;
-  justify-content: center;
   align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  justify-content: center;
+  z-index: 1000;
 }
 
-/* Modal oynasi */
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 300px;
-  transform: scale(0.8);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Modal ochilganda */
-.modal-overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-overlay.show .modal {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Input maydonlar */
-.input {
-  display: block;
+.modal-2 {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
   width: 100%;
-  margin: 10px 0;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  max-width: 400px;
+  box-shadow: 0 4px 12px var(--shadow-color);
 }
 
-/* Tugmalar */
-.modal-buttons {
+.modal-2 h2 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.modal-2 input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.modal-2 input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.modal-buttons-2 {
   display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.btn {
-  padding: 8px 12px;
+.btn-2 {
+  padding: 8px 16px;
   border: none;
+  border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.2s;
+  background: var(--button-bg);
+  color: var(--text-primary);
 }
 
-.btn.primary {
-  background: blue;
+.btn-2.primary-2 {
+  background: var(--accent-color);
   color: white;
 }
 
-.btn:hover {
-  background: #ddd;
+.btn-2:hover {
+  opacity: 0.9;
+}
+
+.btn-2:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.search-input {
+  margin-bottom: 16px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+}
+
+.search-results {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.search-result-item {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: var(--bg-secondary);
+}
+
+.search-result-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.search-result-item h4 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.search-result-item span {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.groups-menu {
+  position: relative;
+}
+
+.groups-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  width: 200px;
+  color: var(--text-primary);
+  border: 3px solid var(--border-color);
+}
+
+.groups-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  min-width: 180px;
+  display: none;
+  z-index: 100;
+  border: 1px solid var(--border-color);
+}
+
+.groups-dropdown.show {
+  display: block;
+}
+
+.groups-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.groups-dropdown-item:hover {
+  background: var(--bg-tertiary);
 }
