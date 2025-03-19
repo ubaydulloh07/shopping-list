@@ -23,16 +23,17 @@ aside {
   background-color: var(--bg-tertiary);
 }
 
-.profile-menu a {
-  text-decoration: none;
-  color: var(--text-primary);
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--bg-secondary);
 }
 
 .profile-icon {
   font-size: 20px;
   color: var(--accent-color);
-  background-color: var(--bg-secondary);
-  border: 3px solid var(--border-color);
 }
 
 .content {

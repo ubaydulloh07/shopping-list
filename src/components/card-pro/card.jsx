@@ -9,7 +9,7 @@ const ProfileCard = ({ name, username }) => {
   };
 
   return (
-    <div className="profile-card">
+    <div className="profile-card">  
 
     <div className="profile-header">
     <h2>Your Profile</h2>

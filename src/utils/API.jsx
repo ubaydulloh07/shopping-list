@@ -11,9 +11,6 @@ API.interceptors.request.use((req) => {
     return req
 });
 API.interceptors.response.use((res) => {
-
-
-    
     return res
 }, (error) => {
     if (error.response?.status === 401) {
@@ -23,40 +20,62 @@ API.interceptors.response.use((res) => {
     return Promise.reject(error)
 })
 
-// Add methods directly to API object
 API.login = async (credentials) => {
-    const response = await API.post("/auth", credentials);
-    return response.data;
+    try {
+        const response = await API.post("/auth", credentials);
+        return response.data;
+    } catch (error) {
+        throw new Error("Login xatolik yuz berdi");
+    }
 };
 
 API.getMe = async () => {
-    const response = await API.get("/");
-    return response.data;
+    try {
+        const response = await API.get("/");
+        return response.data;
+    } catch (error) {
+        throw new Error("Foydalanuvchi ma'lumotlarini olishda xatolik");
+    }
 };
 
+
 API.register = async (userData) => {
-    const response = await API.post("/users", userData);
-    return response.data;
+    try {
+        const response = await API.post("/users", userData);
+        return response.data;
+    } catch (error) {
+        throw new Error("Ro'yxatdan o'tishda xatolik");
+    }
 };
 
 API.deleteUser = async () => {
-    const response = await API.delete("/");
-    return response.data;
+    try {
+        const response = await API.delete("/");
+        return response.data;
+    } catch (error) {
+        throw new Error("Foydalanuvchini o'chirishda xatolik");
+    }
 };
 
 API.searchUsers = async (query) => {
-    const response = await API.get(`/search?q=${query}`);
-    return response.data;
+    try {
+        const response = await API.get(`/users/search?q=${query}`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Foydalanuvchilarni qidirishda xatolik");
+    }
 };
+
 
 API.getMyGroups = async () => {
     try {
         const response = await API.get("/groups");
         return response.data;
     } catch (error) {
-        console.error("Get groups error:", error.response?.data || error.message);
-        throw error;
+        throw new Error("Guruhlarni olishda xatolik");
     }
+
+
 };
 
 API.getGroupById = async (groupId) => {
@@ -64,19 +83,22 @@ API.getGroupById = async (groupId) => {
         const response = await API.get(`/groups/${groupId}`);
         return response.data;
     } catch (error) {
-        console.error("Get group error:", error.response?.data || error.message);
-        throw error;
+        console.error("Get group error:", error);
+
+        
+        throw new Error("Guruh ma'lumotlarini olishda xatolik");
     }
 };
 
 API.createGroup = async (data) => {
     try {
-        const response = await API.post("/groups/create", {
+        const response = await API.post("/groups", {
             name: data.name,
             password: data.password
         });
         return response.data;
     } catch (error) {
+        console.error("Create group error:", error);
         if (error.response?.data?.message) {
             throw new Error(error.response.data.message);
         }
@@ -85,27 +107,43 @@ API.createGroup = async (data) => {
 };
 
 API.deleteGroup = async (groupId) => {
-    const response = await API.delete(`/groups/${groupId}`);
-    return response.data;
+    try {
+        const response = await API.delete(`/groups/:${groupId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Guruhni o'chirishda xatolik");
+    }
 };
 
 API.addMember = async (groupId, memberId) => {
-    const response = await API.post(`/groups/${groupId}/members`, { memberId });
-    return response.data;
+    try {
+        const response = await API.post(`/groups/:${groupId}/members`, {
+            memberId: memberId
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Add member error:", error);
+        throw new Error("A'zoni qo'shishda xatolik");
+    }
 };
 
 API.removeMember = async (groupId, memberId) => {
-    const response = await API.delete(`/groups/${groupId}/members/${memberId}`);
-    return response.data;
+    try {
+        const response = await API.delete(`/groups/:${groupId}/members/:${memberId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error("A'zoni o'chirishda xatolik");
+    }
 };
 
 API.joinGroup = async (groupId, password) => {
     try {
-        const response = await API.post(`/groups/join/${groupId}`, { password });
+        const response = await API.post(`/groups/:${groupId}/join`, {
+            password: password
+        });
         return response.data;
     } catch (error) {
-        console.error("Join group error:", error.response?.data || error.message);
-        throw error;
+        throw new Error("Guruhga qo'shilishda xatolik");
     }
 };
 
@@ -140,8 +178,12 @@ API.getInvitations = async () => {
 };
 
 API.leaveGroup = async (groupId) => {
-    const response = await API.post(`/groups/${groupId}/leave`);
-    return response.data;
+    try {
+        const response = await API.post(`/groups/:${groupId}/leave`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Guruhdan chiqishda xatolik");
+    }
 };
 
 API.searchGroups = async (query) => {
@@ -149,31 +191,51 @@ API.searchGroups = async (query) => {
         const response = await API.get(`/groups/search?q=${query}`);
         return response.data;
     } catch (error) {
-        console.error("Search groups error:", error.response?.data || error.message);
-        throw error;
+        throw new Error("Guruhlarni qidirishda xatolik");
     }
 };
 
-API.createGroupItem = async (groupId, data) => {
-    const response = await API.post(`/groups/${groupId}/items`, data);
-    return response.data;
+API.createGroupItem = async ( data) => {
+    try {
+        const response = await API.post(`/groups`, data);
+        return response.data;
+    } catch (error) {
+        console.error("Create item error:", error);
+        throw new Error("Item qo'shishda xatolik");
+    }
 };
 
 API.getGroupItems = async (groupId) => {
-    const response = await API.get(`/groups/${groupId}/items`);
-    return response.data;
+    try {
+        const response = await API.get(`/groups`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Itemlarni olishda xatolik");
+    }
 };
 
 API.deleteGroupItem = async (groupId, itemId) => {
-    const response = await API.delete(`/groups/${groupId}/items/${itemId}`);
-    return response.data;
+    try {
+        const response = await API.delete(`/groups`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Itemni o'chirishda xatolik");
+    }
 };
 
 API.getGroupMembers = async (groupId) => {
-    const response = await API.get(`/groups/${groupId}/members`);
-    return response.data;
+    try {
+        const response = await API.get(`/groups/:${groupId}/members`);
+        return response.data;
+    } catch (error) {
+        throw new Error("A'zolarni olishda xatolik");
+    }
 };
 
-export default API ;
+
+const functionsToRemove = ['addMemberToGroup', 'deleteGroup', 'leaveGroup', 'removeMemberFromGroup'];
+
+
+export default API;
 
 

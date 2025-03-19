@@ -179,6 +179,7 @@ export default function GroupMenu() {
               value={groupName}
               onChange={(e) => setGroupName(e.target.value)}
               disabled={loading}
+              style={ {color: "black"} }
             />
             <input
               type="password"
@@ -186,6 +187,7 @@ export default function GroupMenu() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={loading}
+              style={ {color: "black"} }
             />
             <div className="modal-buttons-2">
               <button 

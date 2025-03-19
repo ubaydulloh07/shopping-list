@@ -1,46 +1,6 @@
 
 
 
-// import React from "react";
-// import "antd/dist/reset.css";
-// import "./profile.css";
-// import Header from "../../components/header/header";
-// import { IoPerson } from "react-icons/io5";
-// import GroupMenu from "../Group/group";
-// import { Link } from "react-router-dom";
-
-// const Profile = () => {
-
-//   return (
-//     <div className="profile-container">
-
-    
-//     <div className="header">
-//       <Header />
-//     </div>
-
-//     <div className="content">
-//       <aside>
-//       <div className="profile-menu">
-//         <Link to="/profile"><IoPerson className="profile-icon" />Profile</Link>
-//       </div>
-//     <div>
-//       <GroupMenu />
-//     </div>
-//       </aside>
-     
-//     </div>
-
-
-
-
-
-//     </div>
-//   );
-// };
-
-// export default Profile;
-
 
 
 
@@ -76,10 +36,10 @@ const Profile = () => {
       <div className="content">
         <aside>
           <div className="profile-menu">
-            <Link to="/">
+            <p  className="profile-menu-item">
               <IoPerson className="profile-icon" />
               Profile
-            </Link>
+            </p>
           </div>
           <div style={{position: "relative", zIndex: 1}}>
             <Group />
